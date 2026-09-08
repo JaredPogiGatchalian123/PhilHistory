@@ -1,5 +1,5 @@
 /* =========================================================
-   PIGAFETTA'S PHILIPPINES — script.js
+    PIGAFETTA'S PHILIPPINES - script.js
    Vanilla JavaScript for the interactive exhibit
    ========================================================= */
 
@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initBackToTop();
     initVocabulary();
     initSourceTabs();
+    initFieldNotesExplorer();
     initModal();
 });
 
@@ -115,17 +116,17 @@ function initBackToTop() {
    and uncertain for some entries, so wording is cautious.
    ========================================================= */
 const vocabulary = [
-    { category: "numbers", word: "isa", meaning: "one", context: "Numeral list recorded from islanders.", note: "Possibly related to a Philippine numeral; transcription reflects European hearing." },
-    { category: "numbers", word: "dua", meaning: "two", context: "Numeral list recorded from islanders.", note: "Spelling filtered through Pigafetta's Italian pronunciation." },
-    { category: "numbers", word: "tolu", meaning: "three", context: "Numeral list recorded from islanders.", note: "Likely a Visayan-adjacent number; exact identification debated." },
-    { category: "numbers", word: "upat", meaning: "four", context: "Numeral list recorded from islanders.", note: "Clear example of the early written numeral series." },
-    { category: "numbers", word: "lima", meaning: "five", context: "Numeral list recorded from islanders.", note: "Matches a number found in later Philippine languages." },
-    { category: "numbers", word: "siam", meaning: "nine", context: "Numeral list recorded from islanders.", note: "Part of the sequence that historians use for linguistic comparison." },
-    { category: "food", word: "kanin", meaning: "cooked rice / food", context: "Food offered to the crew.", note: "Points to rice as a staple and to shared vocabulary for food." },
-    { category: "food", word: "tuba", meaning: "palm wine (fermented sap)", context: "Drink made from the coconut/palm, described as common.", note: "Shows a coastal tree-crop beverage culture." },
-    { category: "objects", word: "balanghai", meaning: "large seagoing boat", context: "A vessel used between islands and for trade.", note: "Evidence of capable maritime craft and island connectivity." },
-    { category: "social", word: "dato", meaning: "chief / leader", context: "Term for local political leaders.", note: "Pigafetta's rendering of a leadership title; used to describe received authority." },
-    { category: "social", word: "barangay", meaning: "community / social unit", context: "Social-political grouping described by the observer.", note: "Early European note of a community term with long usage." }
+    { category: "numbers", word: "isa", meaning: "one", context: "A number Pigafetta wrote down.", note: "The spelling shows how he heard and recorded the word." },
+    { category: "numbers", word: "dua", meaning: "two", context: "Part of Pigafetta's list of numbers.", note: "His spelling was shaped by his Italian pronunciation." },
+    { category: "numbers", word: "tolu", meaning: "three", context: "A number in the list he recorded.", note: "The exact modern match is still discussed by researchers." },
+    { category: "numbers", word: "upat", meaning: "four", context: "Part of the early number list.", note: "It gives us a small glimpse of the language he heard." },
+    { category: "numbers", word: "lima", meaning: "five", context: "A number Pigafetta included in his notes.", note: "The word appears in later Philippine languages too." },
+    { category: "numbers", word: "siam", meaning: "nine", context: "Part of the number list from the voyage.", note: "Researchers compare it with words in other Philippine languages." },
+    { category: "food", word: "kanin", meaning: "cooked rice / food", context: "Food offered to the crew.", note: "It points to rice as an important food and word." },
+    { category: "food", word: "tuba", meaning: "palm wine from fermented sap", context: "A drink made from coconut or palm sap.", note: "It shows how palm trees supported everyday coastal life." },
+    { category: "objects", word: "balanghai", meaning: "large seagoing boat", context: "A boat used for travel between islands.", note: "It points to strong boatbuilding and travel skills." },
+    { category: "social", word: "dato", meaning: "chief / leader", context: "A word for a local leader.", note: "Pigafetta described these leaders with European titles too." },
+    { category: "social", word: "barangay", meaning: "community / social group", context: "A word connected with local community life.", note: "It is an early European record of a long-used Philippine word." }
 ];
 
 function initVocabulary() {
@@ -212,29 +213,133 @@ function initSourceTabs() {
         });
     });
 }
+
+/* =========================================================
+   FIELD NOTES EXPLORER
+   ========================================================= */
+const fieldNotes = {
+    hospitality: {
+        title: "Welcoming Guests and Making Friends",
+        quote: '"They showed us great kindness and offered us fish, figs, and jars of palm wine."',
+        location: "Limasawa / Cebu • April 1521",
+        observation: "The islanders greeted the Spanish crew warmly, offered food and drink, and took part in peace agreements.",
+        context: "In early island culture, sharing a meal and gifts was standard diplomatic courtesy and a way to test if new visitors came in peace.",
+        importance: "It shows that early Filipinos had well-established customs of hospitality and diplomacy long before Spanish rule."
+    },
+    food: {
+        title: "Food, Rice, and Palm Wine (Tuba)",
+        quote: '"They make a wine which they call tuba from the sap of palm trees."',
+        location: "Homonhon / Cebu • March to April 1521",
+        observation: "People harvested palm sap to make wine, called tuba, and ate meals with rice, pork, ginger, and fish.",
+        context: "The communities practiced settled farming and had established traditions of brewing drinks and celebrating harvests.",
+        importance: "It shows settled agriculture and daily community life were already thriving across the islands."
+    },
+    ceremonies: {
+        title: "Royal Welcomes and Gift Exchange",
+        quote: '"The king gave the captain many bars of gold and porcelain jars filled with ginger."',
+        location: "Limasawa / Cebu • April 1521",
+        observation: "Local leaders, called datus, exchanged valuable gifts like gold, imported cloth, and porcelain dishes with Magellan.",
+        context: "Exchanging gifts was how leaders formed alliances, showed respect, and measured each other's status.",
+        importance: "Gold was part of everyday leadership and ceremonial life, not just treasure kept in chests."
+    },
+    dress: {
+        title: "Clothing, Jewelry, and Tattoos (Pintados)",
+        quote: '"Their bodies were smooth and painted with figures all over."',
+        location: "Cebu and neighboring islands • April 1521",
+        observation: "People wore lightweight woven clothes, gold earrings, and intricate full-body tattoos.",
+        context: "In a tropical climate, clothes were kept light, while tattoos were earned badges of bravery, status, and identity.",
+        importance: "Tattoos were not primitive decorations. They were a respected art form and a mark of personal courage."
+    },
+    music: {
+        title: "Music, Gongs, and Celebration",
+        quote: '"Young women played upon copper gongs and made sweet harmony."',
+        location: "Cebu • April 1521",
+        observation: "Celebrations featured rhythmic brass gongs, called agung, singing, and ceremonial group dances.",
+        context: "Music and dance were essential parts of major gatherings, welcoming visitors, and religious rites.",
+        importance: "It preserves a record of ancient musical traditions and instruments that still exist in parts of the Philippines today."
+    },
+    spiritual: {
+        title: "Early Beliefs and Rituals",
+        quote: '"They raised their hands to heaven and called upon their god, whom they call Abba."',
+        location: "Cebu and the Visayan region • April 1521",
+        observation: "People honored ancestral spirits, offered food during rituals, and listened to female spiritual leaders called babaylan.",
+        context: "Pigafetta tried to understand their beliefs through his own Catholic viewpoint, while the people followed traditions centered on spirits and ancestors.",
+        importance: "It gives us a rare glimpse into indigenous spiritual beliefs before Spanish Christianity took root."
+    }
+};
+
+function initFieldNotesExplorer() {
+    const explorer = document.querySelector(".field-notes-explorer");
+    if (!explorer) return;
+
+    const topicButtons = Array.from(explorer.querySelectorAll(".field-note-topic"));
+    const title = explorer.querySelector("#field-note-title");
+    const quote = explorer.querySelector("#field-note-quote");
+    const location = explorer.querySelector("#field-note-location");
+    const tag = explorer.querySelector("#field-note-tag");
+    const observation = explorer.querySelector("#field-note-observation");
+    const context = explorer.querySelector("#field-note-context");
+    const importance = explorer.querySelector("#field-note-importance");
+    let currentTopic = "hospitality";
+
+    const render = () => {
+        const note = fieldNotes[currentTopic];
+        title.textContent = note.title;
+        quote.textContent = note.quote;
+        location.innerHTML = `Location: ${note.location}`;
+        tag.textContent = `Location: ${note.location.replace(" • ", " / ")}`;
+        [observation, context, importance].forEach((item) => item.classList.remove("is-changing"));
+        requestAnimationFrame(() => {
+            observation.textContent = note.observation;
+            context.textContent = note.context;
+            importance.textContent = note.importance;
+            [observation, context, importance].forEach((item) => item.classList.add("is-changing"));
+        });
+    };
+
+    topicButtons.forEach((button, index) => {
+        button.addEventListener("click", () => {
+            currentTopic = button.dataset.topic;
+            topicButtons.forEach((item) => {
+                const active = item === button;
+                item.classList.toggle("is-active", active);
+                item.setAttribute("aria-pressed", String(active));
+            });
+            render();
+        });
+        button.addEventListener("keydown", (event) => {
+            if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
+            event.preventDefault();
+            const nextIndex = event.key === "ArrowDown" ? (index + 1) % topicButtons.length : (index - 1 + topicButtons.length) % topicButtons.length;
+            topicButtons[nextIndex].focus();
+        });
+    });
+
+    render();
+}
 /* =========================================================
    MODAL (for timeline "Read more" + footnote links)
    ========================================================= */
 const modalContent = {
     "tl-samar": {
         title: "Samar & Homonhon",
-        body: "<p>Landfall in March 1521 on islands now identified with the Guiuan area of Eastern Samar. The crews took on food and water. This first landing was brief and largely unobserved.</p><p><strong>Significance.</strong> It marks the start of sustained contact in the archipelago and the point where the expedition began provisioning for the Pacific crossing onward.</p><p><em>Source: Pigafetta's account and scholarly identifications of the route.</em></p>"
+        body: "<p>In March 1521, the expedition landed near the Guiuan area of Eastern Samar. The crews took on food and water, but the visit was brief.</p><p><strong>Why it matters.</strong> This was the expedition's first recorded contact in the islands and an important stop for supplies.</p><p><em>Source: Pigafetta's account and later studies of the route.</em></p>"
     },
     "tl-limasawa": {
         title: "Limasawa (the 'Rahat' islets)",
-        body: "<p>Late March 1521. The account records a hospitable meeting where islanders offered gifts, including gold, and where leaders (whom Pigafetta later calls kings or chiefs) received the expedition.</p><p><strong>Significance.</strong> The gifts and food offered show active diplomacy and the material resources available in the islands.</p><p><em>Interpretive note: the name and location are debated by scholars.</em></p>"
+        body: "<p>In late March 1521, islanders welcomed the expedition and offered gifts, including gold. Pigafetta later called local leaders kings or chiefs.</p><p><strong>Why it matters.</strong> The gifts and food show active diplomacy and the resources available to coastal communities.</p><p><em>Note: the exact name and location are still debated.</em></p>"
     },
     "tl-cebu": {
         title: "The Island of Cebu",
-        body: "<p>April 1521. Friendly exchange, trade, and the reporting of a local 'king' and social hierarchy. Pigafetta also notes the production and drinking of palm wine (tuba).</p><p><strong>Significance.</strong> These notes are evidence for political leadership, hospitality, and a settled economy.</p><p><em>Caution: 'king' is Pigafetta's translation of unfamiliar leadership.</em></p>"
+        body: "<p>In April 1521, the expedition met local leaders, traded, and saw the production and drinking of palm wine, or tuba. Pigafetta called one leader a king.</p><p><strong>Why it matters.</strong> These notes point to political leadership, hospitality, and a settled economy.</p><p><em>Caution: &quot;king&quot; was Pigafetta's translation for a leader whose role was unfamiliar to him.</em></p>"
     },
     "tl-mactan": {
         title: "Mactan (Mactang)",
-        body: "<p>About 27 April 1521, at Mactan on Cebu, a confrontation with local forces led to the death of Ferdinand Magellan. Pigafetta's account is a primary eyewitness to this turning point.</p><p><strong>Significance.</strong> It shows that relations could turn violent, and that the welcome of the expedition was not universal.</p><p><em>Note: historians treat descriptions of the conflict from both sides carefully.</em></p>"
+        body: "<p>On about 27 April 1521, fighting at Mactan led to the death of Ferdinand Magellan. Pigafetta was there and recorded this turning point.</p><p><strong>Why it matters.</strong> The event shows that relationships with the expedition could turn violent and that not every community accepted its demands.</p><p><em>Note: historians compare accounts of the fight carefully.</em></p>"
     },
     "tl-butuan": {
         title: "Butuan & the wider islands",
-        body: "<p>Late April to May 1521. The expedition continued provisioning and exchanged goods with communities that displayed gold, rice, and items linked to regional trade.</p><p><strong>Significance.</strong> These exchanges support the view that the islands participated in wider Southeast Asian maritime commerce.</p><p><em>Interpretive note: the extent of this trade is weighed against archaeology and later Spanish records.</em></p>"
+        body: "<p>From late April into May 1521, the expedition continued to gather supplies and exchange goods. Communities displayed gold, rice, and items linked to regional trade.</p><p><strong>Why it matters.</strong> These exchanges suggest that the islands took part in wider Southeast Asian sea trade.</p><p><em>Note: historians compare Pigafetta's account with archaeology and later records.</em></p>"
     }
 };
 

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Map of Magellan's 1521 expedition in the Philippines</title>
+  <desc id="desc">An antique parchment style map showing Homonhon, Limasawa, Cebu, and Mactan connected by a red route.</desc>
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff8e8"/>
+      <stop offset="1" stop-color="#e8d5ae"/>
+    </linearGradient>
+    <pattern id="grid" width="54" height="54" patternUnits="userSpaceOnUse">
+      <path d="M54 0H0V54" fill="none" stroke="#a98b5d" stroke-opacity=".16"/>
+    </pattern>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#5a3e24" flood-opacity=".24"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="760" fill="url(#paper)"/>
+  <rect width="1200" height="760" fill="url(#grid)"/>
+  <path d="M0 88C210 50 345 124 520 76S888 28 1200 96M0 650c196-64 372 26 564-18s394-30 636 30" fill="none" stroke="#9d7b4c" stroke-opacity=".34" stroke-width="2" stroke-dasharray="9 12"/>
+  <g fill="#d6bd8d" stroke="#6f5739" stroke-width="2" filter="url(#shadow)">
+    <path d="M784 115l37-22 45 12 26 39-19 36-39 14-26-27-34 3-22-25z"/>
+    <path d="M702 224l33-23 30 14 3 38-22 34-31-16-16-26z"/>
+    <path d="M640 316l29-17 33 15 3 31-23 24-30-11-19-22z"/>
+    <path d="M570 398l26-19 25 12 8 32-20 27-28-10-15-22z"/>
+    <path d="M499 482l28-14 22 18-4 31-28 16-24-20z"/>
+    <path d="M882 248l28-20 34 19-8 31-30 14-27-18z"/>
+    <path d="M946 349l31-17 25 20-10 29-29 10-23-18z"/>
+  </g>
+  <path d="M780 126C738 179 716 237 677 316S603 427 516 502" fill="none" stroke="#a24d35" stroke-width="5" stroke-dasharray="13 10" stroke-linecap="round"/>
+  <g fill="#5e4630" font-family="Georgia,serif" font-style="italic">
+    <text x="86" y="100" font-size="30" letter-spacing="5">MARE INDICUM</text>
+    <text x="810" y="78" font-size="24">Insulae Philippinae</text>
+    <text x="810" y="106" font-size="17">The first voyage, 1521</text>
+    <text x="800" y="176" font-size="22">Homonhon</text>
+    <text x="700" y="286" font-size="22">Limasawa</text>
+    <text x="606" y="370" font-size="22">Cebu</text>
+    <text x="890" y="315" font-size="22">Mactan</text>
+    <text x="438" y="548" font-size="20">Route of the expedition</text>
+  </g>
+  <g transform="translate(150 550)" fill="none" stroke="#6f5739" stroke-width="3">
+    <circle r="68"/><circle r="53" stroke-width="1.5"/>
+    <path d="M0-82L16 0 0 82-16 0zM-82 0L0-16 82 0 0 16z"/>
+  </g>
+  <g fill="#6f5739" font-family="Georgia,serif" font-size="20" text-anchor="middle">
+    <text x="150" y="452">N</text><text x="150" y="650">S</text><text x="55" y="558">W</text><text x="245" y="558">E</text>
+  </g>
+  <rect x="18" y="18" width="1164" height="724" fill="none" stroke="#765a37" stroke-width="5"/>
+  <rect x="30" y="30" width="1140" height="700" fill="none" stroke="#b99762" stroke-width="2"/>
+</svg>

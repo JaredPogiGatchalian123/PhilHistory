@@ -23,36 +23,41 @@
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
     <header class="site-header" id="site-header">
-        <a class="site-logo" href="#hero" aria-label="Pigafetta's Philippines home">
-            <svg class="logo-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="9"/>
-                <path d="M8.5 12a3.5 3.5 0 0 1 15.5 10z"/>
-            </svg>
-            <span class="logo-text">Pigafetta's&nbsp;Philippines</span>
-        </a>
+        <div class="site-header-inner">
+            <a class="site-logo" href="#hero" aria-label="Pigafetta's Philippines home">
+                <svg class="logo-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="9"/>
+                    <path d="M8.5 12a3.5 3.5 0 0 1 15.5 10z"/>
+                </svg>
+                <span class="logo-text">Pigafetta's&nbsp;Philippines</span>
+            </a>
 
-        <nav class="main-nav" aria-label="Primary navigation">
-            <a href="#introduction">Introduction</a>
-            <a href="#customs">Customs</a>
-            <a href="#vocabulary">Language</a>
-            <a href="#trade">Trade</a>
-            <a href="#significance">Significance</a>
-            <a href="#sources">Sources</a>
-        </nav>
+            <nav class="main-nav" aria-label="Primary navigation">
+                <a href="#introduction">Overview</a>
+                <a href="#read-critically">Source Reading</a>
+                <a href="#customs">Daily Life</a>
+                <a href="#vocabulary">Language</a>
+                <a href="#trade">Trade</a>
+                <a href="#artifact-lab">Artifact Game</a>
+                <a href="#significance">Significance</a>
+                <a href="#sources">Sources</a>
+            </nav>
 
-        <button class="mobile-menu-button" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
-            <span></span><span></span><span></span>
-        </button>
+            <button class="mobile-menu-button" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
     </header>
 
-    <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
-        <a href="#introduction">Introduction</a>
-        <a href="#read-critically">Reading Critically</a>
-        <a href="#customs">Customs &amp; Traditions</a>
-        <a href="#vocabulary">Language &amp; Vocabulary</a>
-        <a href="#trade">Trade &amp; Economic Life</a>
-        <a href="#significance">Historical Significance</a>
-        <a href="#sources">Sources &amp; Evidence</a>
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation" aria-hidden="true">
+        <a href="#introduction">Overview</a>
+        <a href="#read-critically">Source Reading</a>
+        <a href="#customs">Daily Life</a>
+        <a href="#vocabulary">Language</a>
+        <a href="#trade">Trade</a>
+        <a href="#artifact-lab">Artifact Game</a>
+        <a href="#significance">Significance</a>
+        <a href="#sources">Sources</a>
     </nav>
 
     <main id="main-content">
@@ -61,7 +66,6 @@
             <div class="hero-backdrop" aria-hidden="true">
                 <span class="hero-coordinate coordinate-one">12° N / 124° E</span>
                 <span class="hero-coordinate coordinate-two">Mare Indicum</span>
-                <span class="hero-windrose">✦</span>
             </div>
             <div class="hero-layout">
                 <div class="hero-content">
@@ -82,15 +86,63 @@
                         <div><strong>Victoria</strong><span>Returns</span></div>
                     </div>
                     <div class="hero-actions">
-                        <a class="btn btn-primary" href="#introduction">Explore the Account <span aria-hidden="true">&rarr;</span></a>
-                        <a class="btn btn-ghost" href="#significance">How Historians Read It</a>
+                        <a class="btn btn-primary" href="#introduction">Explore</a>
+                        <a class="btn btn-ghost" href="#significance">Read It</a>
                     </div>
                 </div>
                 <div class="hero-artifact">
                     <div class="artifact-frame">
                         <div class="artifact-inner">
                             <img src="images/map.svg" alt="Illustrated map of Magellan's 1521 expedition through the Philippines">
-                            <span class="artifact-stamp">Archival Reference: Codex Ambrosianus <span aria-hidden="true">•</span> Folio 42r</span>
+                            <svg class="voyage-animation" viewBox="0 0 1200 760" aria-hidden="true" focusable="false">
+                                <defs>
+                                    <path id="voyage-route" d="M780 126C738 179 716 237 677 316S603 427 516 502" />
+                                </defs>
+                                <path class="voyage-route-trace" d="M780 126C738 179 716 237 677 316S603 427 516 502" />
+                                <g class="voyage-ship">
+                                    <animateMotion dur="14s" repeatCount="indefinite" rotate="0">
+                                        <mpath href="#voyage-route" />
+                                    </animateMotion>
+                                    <g class="voyage-ship-bob" transform="translate(0 -28)">
+                                        <animateTransform attributeName="transform" type="translate" values="0 -28; 0 -32; 0 -28; 0 -25; 0 -28" dur="1.8s" repeatCount="indefinite" />
+                                        <g class="ship-art" transform="scale(1.3)">
+                                        <path class="ship-wake ship-wake-far" d="M-48 14C-39 9-31 10-23 14" />
+                                        <path class="ship-wake" d="M-42 8C-33 3-25 4-17 8" />
+                                        <ellipse class="ship-shadow" cx="0" cy="13" rx="34" ry="6" />
+                                        <path class="ship-hull" d="M-32 2L34 2 24 18H-18Q-27 13-32 2Z" />
+                                        <path class="ship-hull-rim" d="M-34 1H35" />
+                                        <path class="ship-mast" d="M-2 3V-43" />
+                                        <path class="ship-yard" d="M-24-29H20" />
+                                        <path class="ship-sail ship-sail-main" d="M-3-41V-4H25Q18-24-3-41Z" />
+                                        <path class="ship-sail ship-sail-small" d="M-6-34V-5H-25Q-20-22-6-34Z" />
+                                        <path class="ship-pennant" d="M-2-43L16-39-2-35Z" />
+                                        <circle class="ship-porthole" cx="3" cy="9" r="2.6" />
+                                        <circle class="ship-porthole" cx="14" cy="9" r="2.6" />
+                                        <path class="ship-smile" d="M5 13Q9 17 13 13" />
+                                        </g>
+                                    </g>
+                                </g>
+                                <g class="voyage-ship-comment">
+                                    <animateMotion dur="14s" repeatCount="indefinite" rotate="0">
+                                        <mpath href="#voyage-route" />
+                                    </animateMotion>
+                                    <g class="ship-bubble" transform="translate(0 -88)">
+                                        <path d="M-43-15H43Q50-15 50-8V8Q50 15 43 15H8L0 23-2 15H-43Q-50 15-50 8V-8Q-50-15-43-15Z" />
+                                        <text x="0" y="4" text-anchor="middle">LAND HO-ISH!</text>
+                                    </g>
+                                </g>
+                                <g class="voyage-marker">
+                                    <circle class="voyage-marker-glow" r="15" />
+                                    <circle class="voyage-marker-core" r="6" />
+                                    <animateMotion dur="14s" repeatCount="indefinite" rotate="auto">
+                                        <mpath href="#voyage-route" />
+                                    </animateMotion>
+                                </g>
+                                <g class="voyage-stop voyage-stop-start"><circle cx="780" cy="126" r="8" /></g>
+                                <g class="voyage-stop voyage-stop-middle"><circle cx="677" cy="316" r="7" /></g>
+                                <g class="voyage-stop voyage-stop-end"><circle cx="516" cy="502" r="8" /></g>
+                            </svg>
+                            <span class="artifact-stamp">Not a precise modern map</span>
                         </div>
                     </div>
                     <p class="artifact-caption">A route remembered through surviving notes, coastal encounters, and the geography of the first voyage.</p>
@@ -101,7 +153,7 @@
         <section class="section" id="introduction">
             <div class="section-head">
                 <p class="eyebrow">01, Introduction</p>
-                <h2 class="introduction-title">Who Was Pigafetta, and Why Does His Account Matter?</h2>
+                        <h2 class="introduction-title">Who Was Pigafetta?</h2>
             </div>
             <div class="intro-facts reveal" aria-label="Expedition facts">
                 <div class="intro-fact"><strong>270 Sailed (1519)</strong><span aria-hidden="true">&rarr;</span><strong>18 Returned (1522)</strong></div>
@@ -110,11 +162,29 @@
             </div>
 
             <div class="intro-columns">
+                <figure class="pigafetta-portrait reveal">
+                    <div class="portrait-image-wrap">
+                        <img src="images/pigafetta-portrait.png" alt="Antonio Pigafetta portrait">
+                        <video class="portrait-video hidden" playsinline preload="auto" aria-label="Antonio Pigafetta waving">
+                            <source src="assets/pigafetta-wave1.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <figcaption class="portrait-plaque">
+                        <strong>Antonio Pigafetta</strong>
+                        <span>c. 1491 - c. 1534 | Venetian Scholar &amp; Chronicler</span>
+                        <small>Primary Eyewitness of the 1521 Expedition</small>
+                    </figcaption>
+                    <button id="pigafetta-voice-btn" class="voice-btn" type="button" aria-label="Hear Antonio Pigafetta introduce himself">
+                        <span class="voice-text">Hear a Greeting</span>
+                    </button>
+                </figure>
+
+                <div class="intro-content">
                 <div class="intro-biography">
                     <p class="lede intro-lede reveal">
                         Antonio Pigafetta (c.&nbsp;1491 to c.&nbsp;1534) was a Venetian nobleman from
-                        Vicenza who joined Ferdinand Magellan's expedition as a literate passenger
-                        and careful eyewitness.<sup class="fn" data-fn="fn-andrews">1</sup>
+                        Vicenza who joined Ferdinand Magellan's expedition as a literate Italian
+                        volunteer, rather than a paid sailor, and careful eyewitness.
                     </p>
                     <p class="reveal">
                         He survived the voyage, including the Battle of Mactan, and returned to Europe
@@ -125,25 +195,25 @@
                     <p class="reveal">
                         His account, usually translated as <em>The First Voyage Around the World</em>
                         (<em>Relazione del primo viaggio intorno al mondo</em>), survives in four manuscript
-                        codices.<sup class="fn" data-fn="fn-skelton">2</sup> It is valuable precisely because
-                        it is both detailed and partial, shaped by what a 16th-century European traveler
-                        could see, understand, and put into words.
+                        codices. It is valuable precisely because it is both detailed and partial, shaped by
+                        what a 16th-century European traveler could see, understand, and put into words.
                     </p>
                 </div>
 
                 <div class="intro-pillars" aria-label="Three reasons Pigafetta's account matters">
                     <article class="intro-pillar reveal">
-                        <span class="pillar-number">I.</span>
+                        <span class="pillar-number">I</span>
                         <div><h3>Daily Life and Customs</h3><p>Pintados, feasts, and social roles recorded through an outsider's eyes.</p></div>
                     </article>
                     <article class="intro-pillar reveal">
-                        <span class="pillar-number">II.</span>
+                        <span class="pillar-number">II</span>
                         <div><h3>Early Philippine Words</h3><p>Some of the earliest European records of Visayan words and everyday speech.</p></div>
                     </article>
                     <article class="intro-pillar reveal">
-                        <span class="pillar-number">III.</span>
-                        <div><h3>Regional Trade Networks</h3><p>Porcelain, gold weight standards, and port diplomacy reveal a connected maritime world.</p></div>
+                        <span class="pillar-number">III</span>
+                        <div><h3>First Global Navigation</h3><p>His record helps trace the people, ports, and knowledge encountered during the first circumnavigation.</p></div>
                     </article>
+                </div>
                 </div>
             </div>
 
@@ -160,8 +230,8 @@
         <section class="section section-alt" id="read-critically">
             <div class="section-head">
                 <p class="eyebrow">How to Read the Account</p>
-                <h2>Reading the Source Carefully</h2>
-                <p class="section-lead">We begin with what Pigafetta saw, then compare it with other evidence before drawing conclusions about life in the early Philippines.</p>
+                        <h2>How to Read Pigafetta's Account</h2>
+                        <p class="section-lead">See what Pigafetta saw, then compare it with other evidence.</p>
             </div>
 
             <div class="method-pillars" aria-label="Four methods for reading Pigafetta's account">
@@ -195,18 +265,18 @@
         <section class="section section-feature" id="customs">
             <div class="section-head">
                 <p class="eyebrow">Field Notes <span aria-hidden="true">•</span> Cebu, Homonhon &amp; Palawan</p>
-                <h2>What Pigafetta Observed About Daily Life</h2>
-                <p class="section-lead">Choose a topic to see what Pigafetta wrote, what it meant in its time, and why it still matters.</p>
+                        <h2>Daily Life</h2>
+                        <p class="section-lead">Explore what Pigafetta saw and why it still matters.</p>
             </div>
 
             <div class="field-notes-explorer reveal">
                 <nav class="field-notes-rail" aria-label="Field note topics" role="tablist" aria-orientation="vertical">
-                    <button class="field-note-topic is-active" type="button" aria-pressed="true" aria-controls="field-note-panel" data-topic="hospitality"><span class="topic-mark">01</span><span>Welcoming Guests &amp; Making Friends</span></button>
-                    <button class="field-note-topic" type="button" aria-pressed="false" aria-controls="field-note-panel" data-topic="food"><span class="topic-mark">02</span><span>Food, Rice, and Palm Wine</span></button>
-                    <button class="field-note-topic" type="button" aria-pressed="false" aria-controls="field-note-panel" data-topic="ceremonies"><span class="topic-mark">03</span><span>Royal Welcomes &amp; Gift Exchange</span></button>
-                    <button class="field-note-topic" type="button" aria-pressed="false" aria-controls="field-note-panel" data-topic="dress"><span class="topic-mark">04</span><span>Clothing, Jewelry, and Tattoos</span></button>
-                    <button class="field-note-topic" type="button" aria-pressed="false" aria-controls="field-note-panel" data-topic="music"><span class="topic-mark">05</span><span>Music, Gongs, and Celebration</span></button>
-                    <button class="field-note-topic" type="button" aria-pressed="false" aria-controls="field-note-panel" data-topic="spiritual"><span class="topic-mark">06</span><span>Early Beliefs and Rituals</span></button>
+                    <button class="field-note-topic is-active" type="button" role="tab" aria-selected="true" tabindex="0" aria-controls="field-note-panel" data-topic="hospitality"><span class="topic-mark">01</span><span>Welcoming Guests &amp; Making Friends</span></button>
+                    <button class="field-note-topic" type="button" role="tab" aria-selected="false" tabindex="-1" aria-controls="field-note-panel" data-topic="food"><span class="topic-mark">02</span><span>Food, Rice, and Palm Wine</span></button>
+                    <button class="field-note-topic" type="button" role="tab" aria-selected="false" tabindex="-1" aria-controls="field-note-panel" data-topic="ceremonies"><span class="topic-mark">03</span><span>Royal Welcomes &amp; Gift Exchange</span></button>
+                    <button class="field-note-topic" type="button" role="tab" aria-selected="false" tabindex="-1" aria-controls="field-note-panel" data-topic="dress"><span class="topic-mark">04</span><span>Clothing, Jewelry, and Tattoos</span></button>
+                    <button class="field-note-topic" type="button" role="tab" aria-selected="false" tabindex="-1" aria-controls="field-note-panel" data-topic="music"><span class="topic-mark">05</span><span>Music, Gongs, and Celebration</span></button>
+                    <button class="field-note-topic" type="button" role="tab" aria-selected="false" tabindex="-1" aria-controls="field-note-panel" data-topic="spiritual"><span class="topic-mark">06</span><span>Early Beliefs and Rituals</span></button>
                 </nav>
 
                 <article class="field-note-showcase" id="field-note-panel" role="tabpanel" tabindex="0">
@@ -228,14 +298,14 @@
             </div>
 
             <div class="timeline-note reveal">
-                <strong>Key caution.</strong> Pigafetta spent only a few days in most places and saw them as a passing guest and outsider. His observations tell historians about particular encounters rather than every community in the archipelago, and each claim deserves careful context.
+                <strong>Take note.</strong> Pigafetta spent only a few days in most places and saw them as a passing guest and outsider. His observations tell historians about particular encounters rather than every community in the archipelago, and each claim deserves careful context.
             </div>
         </section>
 <!-- ================= VOCABULARY ================= -->
         <section class="section section-alt" id="vocabulary">
             <div class="section-head">
                 <p class="eyebrow">04, Language and Vocabulary</p>
-                <h2>Some of the Earliest Written Philippine Words</h2>
+                        <h2>Early Philippine Words</h2>
                 <p class="section-lead">
                     Pigafetta tried to write down words he heard, including numbers and terms for food,
                     drink, boats, and social roles. These are some of the earliest European records of languages spoken in the islands, but they need to be read carefully.
@@ -275,13 +345,14 @@
         <section class="section section-feature" id="trade">
             <div class="section-head">
                 <p class="eyebrow">Port Economy <span aria-hidden="true">•</span> Archipelagic Commerce</p>
-                <h2>The Trade Cargo of the Islands</h2>
-                <p class="section-lead">Pigafetta documented an active regional trade network. Explore the goods exchanged in precolonial ports.</p>
+                        <h2>Island Trade</h2>
+                        <p class="section-lead">Explore goods exchanged in precolonial ports.</p>
+                <div class="trade-section-actions"><a class="btn btn-game" href="#artifact-lab">Play the Game</a></div>
             </div>
 
             <div class="trade-manifest" aria-label="Six goods connected to precolonial Philippine trade">
                 <article class="manifest-card reveal">
-                    <div class="manifest-seal" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M16 10h16M18 10v8l-5 18h22l-5-18v-8M13 28h22M18 22h12"/></svg></div>
+                    <div class="manifest-image"><img src="images/Gold (Ornaments and Dust).jpg" alt="Precolonial gold craft and ornaments"></div>
                     <p class="manifest-category">Mineral Wealth <span>•</span> Native Gold</p>
                     <h3>Gold (Ornaments and Dust)</h3>
                     <p class="manifest-label">What Pigafetta saw</p>
@@ -291,7 +362,7 @@
                     <span class="manifest-route">Local Philippine Mines <small>Butuan, Surigao, Cebu</small></span>
                 </article>
                 <article class="manifest-card reveal">
-                    <div class="manifest-seal" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 8v32M12 17c6-5 18-5 24 0M12 27c6-5 18-5 24 0M12 37c6-5 18-5 24 0"/></svg></div>
+                    <div class="manifest-image"><img src="images/Rice.jpg" alt="Terraced rice fields in the Philippines"></div>
                     <p class="manifest-category">Staple Provisions <span>•</span> Rice</p>
                     <h3>Rice</h3>
                     <p class="manifest-label">What Pigafetta saw</p>
@@ -301,7 +372,7 @@
                     <span class="manifest-route">Agricultural Surplus</span>
                 </article>
                 <article class="manifest-card reveal">
-                    <div class="manifest-seal" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M15 37h18M18 33c-2-4 2-6 0-10s2-6 0-10M27 33c-2-4 2-6 0-10s2-6 0-10M36 33c-2-4 2-6 0-10s2-6 0-10"/></svg></div>
+                    <div class="manifest-image"><img src="images/Spices and Aromatics.jpg" alt="Traditional spices including cloves and cinnamon"></div>
                     <p class="manifest-category">Aromatics <span>•</span> Ginger and Cloves</p>
                     <h3>Spices and Aromatics</h3>
                     <p class="manifest-label">What Pigafetta saw</p>
@@ -311,7 +382,7 @@
                     <span class="manifest-route">Regional Spice Routes</span>
                 </article>
                 <article class="manifest-card reveal">
-                    <div class="manifest-seal" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 8v10M16 20h16M18 20v17h12V20M14 37h20M20 12c0 3 8 3 8 0"/></svg></div>
+                    <div class="manifest-image"><img src="images/Palm Wine (Tuba).jpg" alt="Coastal coconut palms"></div>
                     <p class="manifest-category">Coastal Livelihood <span>•</span> Tuba</p>
                     <h3>Palm Wine (Tuba)</h3>
                     <p class="manifest-label">What Pigafetta saw</p>
@@ -321,7 +392,7 @@
                     <span class="manifest-route">Coastal Agroforestry</span>
                 </article>
                 <article class="manifest-card reveal">
-                    <div class="manifest-seal" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M7 31h34L34 37H14L7 31ZM12 29l6-14h13l6 14M24 15V9M18 13l-4-5M30 13l4-5"/></svg></div>
+                    <div class="manifest-image"><img src="images/Balangay Ships.jpg" alt="Traditional wooden outrigger sailing vessel"></div>
                     <p class="manifest-category">Maritime Technology <span>•</span> Balangay</p>
                     <h3>Balangay Ships</h3>
                     <p class="manifest-label">What Pigafetta saw</p>
@@ -331,7 +402,7 @@
                     <span class="manifest-route">Inter-Island Sea Trade</span>
                 </article>
                 <article class="manifest-card reveal">
-                    <div class="manifest-seal" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M11 16h26v20H11zM15 12h18M15 21c4-5 6 5 10 0s6 5 8 0M15 29c4-5 6 5 10 0s6 5 8 0"/></svg></div>
+                    <div class="manifest-image"><img src="images/Chinese Porcelain and Silk.jpg" alt="Historic blue and white Asian trade ceramics"></div>
                     <p class="manifest-category">Foreign Imports <span>•</span> China Trade</p>
                     <h3>Chinese Porcelain and Silk</h3>
                     <p class="manifest-label">What Pigafetta saw</p>
@@ -342,138 +413,215 @@
                 </article>
             </div>
 
-            <div class="trade-network" aria-label="Maritime connections between Philippine ports and regional trading worlds">
+            <div class="trade-network maritime-explorer" id="maritime-explorer" aria-labelledby="network-title">
                 <div class="network-heading">
-                    <p class="network-kicker">A maritime web, not a single route</p>
-                    <h3 class="network-caption">Precolonial Maritime Connections</h3>
-                    <p class="network-intro">Philippine ports sat within a changing sea of exchange, linked to several regional worlds at once.</p>
+                    <p class="network-kicker">Maritime Geography <span aria-hidden="true">•</span> An Archipelago Connected</p>
+                        <h3 class="network-caption" id="network-title">Trade Routes</h3>
+                    <p class="network-intro">Select a sea lane on the chart or use the route buttons to inspect the goods and relationships that connected Philippine ports to Asia.</p>
                 </div>
 
-                <div class="network-map">
-                    <div class="network-route route-china" aria-hidden="true"></div>
-                    <div class="network-route route-borneo" aria-hidden="true"></div>
-                    <div class="network-route route-spice" aria-hidden="true"></div>
+                <div class="maritime-explorer-layout">
+                    <div class="nautical-chart" aria-label="Interactive chart of precolonial Philippine maritime trade routes">
+                        <div class="chart-title"><span>Chart 01</span><strong>Asian Sea Trade, c. 1521</strong></div>
+                        <svg class="trade-chart-svg" viewBox="0 0 640 500" role="img" aria-labelledby="chart-title chart-description">
+                            <title id="chart-title">Philippine ports and three connected Asian trade regions</title>
+                            <desc id="chart-description">Curved sea lanes connect Philippine ports at the center to Imperial China in the north, the Malay and Borneo world in the west, and the Moluccas in the south.</desc>
+                            <defs>
+                                <filter id="anchor-glow" x="-100%" y="-100%" width="300%" height="300%">
+                                    <feGaussianBlur stdDeviation="5" result="blur" />
+                                    <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+                                </filter>
+                                <marker id="route-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                    <path d="M 0 0 L 10 5 L 0 10 z" />
+                                </marker>
+                            </defs>
+                            <g class="chart-grid" aria-hidden="true">
+                                <path d="M40 100H600M40 200H600M40 300H600M40 400H600M140 40V460M240 40V460M340 40V460M440 40V460M540 40V460" />
+                                <ellipse cx="320" cy="250" rx="245" ry="180" />
+                            </g>
+                            <g class="chart-watermark" aria-hidden="true"><text x="320" y="75">MARE ORIENTALE</text><text x="320" y="440">SEA LANES / PORTS / EXCHANGE</text></g>
+                            <g class="compass-rose" aria-hidden="true" transform="translate(535 105)">
+                                <circle r="34" />
+                                <path d="M0-28L5 0 0 28-5 0zM-28 0L0 5 28 0 0-5z" />
+                                <path class="compass-diagonal" d="M-19-19L0 0 19 19M19-19L0 0-19 19" />
+                                <text class="compass-north" x="0" y="-40">N</text>
+                            </g>
 
-                    <article class="network-node network-hub">
-                        <span class="node-label">Central hub</span>
-                        <h4>Philippine Archipelago<br>and Ports</h4>
-                        <p>Cebu, Butuan, and other coastal communities</p>
-                    </article>
+                            <g class="trade-route route-china" data-route="china" tabindex="0" role="button" aria-label="Inspect the China route">
+                                <path class="route-line" d="M320 286 C328 230 338 170 350 112" marker-end="url(#route-arrow)" />
+                                <circle class="route-marker" cx="350" cy="112" r="7" />
+                            </g>
+                            <g class="trade-route route-malay" data-route="malay" tabindex="0" role="button" aria-label="Inspect the Malay and Borneo route">
+                                <path class="route-line" d="M285 300 C220 294 150 275 91 236" marker-end="url(#route-arrow)" />
+                                <circle class="route-marker" cx="91" cy="236" r="7" />
+                            </g>
+                            <g class="trade-route route-spice" data-route="spice" tabindex="0" role="button" aria-label="Inspect the Spice Islands route">
+                                <path class="route-line" d="M323 330 C345 370 370 405 401 425" marker-end="url(#route-arrow)" />
+                                <circle class="route-marker" cx="401" cy="425" r="7" />
+                            </g>
 
-                    <article class="network-node network-destination node-china">
-                        <span class="node-label">Northward exchange</span>
-                        <h4>China</h4>
-                        <p>Silk, porcelain, and trade ceramics</p>
-                    </article>
+                            <g class="chart-node chart-node-china" data-route="china" tabindex="0" role="button" aria-label="Inspect Imperial China"><circle cx="350" cy="112" r="15" /><text x="350" y="84">IMPERIAL CHINA</text></g>
+                            <g class="chart-node chart-node-malay" data-route="malay" tabindex="0" role="button" aria-label="Inspect the Malay and Borneo world"><circle cx="91" cy="236" r="15" /><text x="91" y="208">MALAY / BORNEO</text></g>
+                            <g class="chart-node chart-node-spice" data-route="spice" tabindex="0" role="button" aria-label="Inspect the Moluccas"><circle cx="401" cy="425" r="15" /><text x="401" y="463">MOLUCCAS</text></g>
+                            <g class="chart-node chart-node-philippines" data-route="china" tabindex="0" role="button" aria-label="Inspect Philippine ports" filter="url(#anchor-glow)"><circle cx="320" cy="306" r="22" /><circle cx="320" cy="306" r="8" /><text x="320" y="355">PHILIPPINE PORTS</text><text class="node-detail" x="320" y="372">CEBU / BUTUAN / MANILA</text></g>
+                        </svg>
+                        <p class="chart-caption"><span class="chart-legend-dot"></span> Click a sea lane or port to open its route record.</p>
+                    </div>
 
-                    <article class="network-node network-destination node-borneo">
-                        <span class="node-label">Westward connections</span>
-                        <h4>Borneo and the Malay World</h4>
-                        <p>Language, diplomatic links, and textiles</p>
-                    </article>
-
-                    <article class="network-node network-destination node-spice">
-                        <span class="node-label">Southward routes</span>
-                        <h4>The Spice Routes and Moluccas</h4>
-                        <p>Clove, nutmeg, and trading networks</p>
-                    </article>
+                    <div class="route-inspector-wrap">
+                        <div class="route-switcher" role="group" aria-label="Choose a trade route">
+                            <button class="route-switch-button is-active" type="button" data-route="china" aria-pressed="true">China Route</button>
+                            <button class="route-switch-button" type="button" data-route="malay" aria-pressed="false">Malay Route</button>
+                            <button class="route-switch-button" type="button" data-route="spice" aria-pressed="false">Spice Route</button>
+                        </div>
+                        <article class="route-inspector" aria-live="polite" aria-atomic="true">
+                            <div class="inspector-heading">
+                                <span class="inspector-direction" id="route-direction">Northward Route</span>
+                                <h4 id="route-name">Trade with Imperial China</h4>
+                            </div>
+                            <div class="commodity-tags" id="commodity-tags" aria-label="Featured commodities"></div>
+                            <div class="cargo-boxes">
+                                <section class="cargo-box cargo-inbound"><h5>Inbound Cargo</h5><p id="route-inbound"></p></section>
+                                <section class="cargo-box cargo-outbound"><h5>Outbound Cargo</h5><p id="route-outbound"></p></section>
+                            </div>
+                            <div class="big-picture"><span>The Big Picture</span><p id="route-significance"></p></div>
+                        </article>
+                    </div>
                 </div>
-
-                <aside class="historian-note reveal">
-                    <strong>Historian's Note:</strong> Pigafetta's impressions come from quick stopovers rather than a complete economic survey. Trade intensity varied widely between coastal trading ports (like Cebu and Butuan) and inland communities, so historians balance his journals against archaeological digs and trade ceramics found across the islands.
-                </aside>
             </div>
         </section>
 <!-- ================= SIGNIFICANCE ================= -->
         <section class="section section-feature" id="significance">
             <div class="section-head">
                 <p class="eyebrow">Exhibit Conclusion <span aria-hidden="true">•</span> Historical Verdict</p>
-                <h2>Why Pigafetta's Account Still Matters Today</h2>
-                <p class="section-lead">His journal is not the complete truth of our history, but it is one of our earliest windows into it. Here is how historians evaluate his work.</p>
+                <h2>Why It Matters</h2>
+                <p class="section-lead">His journal records traditions that still shape Filipino culture.</p>
             </div>
 
-            <div class="verdict-grid" aria-label="Three reasons Pigafetta's account still matters">
-                <article class="verdict-card verdict-value reveal">
-                    <p class="verdict-tag">The Value</p>
-                    <h3>An Irreplaceable First Look</h3>
-                    <p class="verdict-key">Eyewitness details we would not have otherwise</p>
-                    <p>Pigafetta recorded everyday names, food, Visayan words, and customs before Spanish colonization changed them. Without his notes, much of this written detail from 1521 would be lost to time.</p>
-                    <p class="talking-point"><strong>Presentation point:</strong> It gives us raw evidence of our ancestors' culture.</p>
-                </article>
-                <article class="verdict-card verdict-critique reveal">
-                    <p class="verdict-tag">The Critique</p>
-                    <h3>The Foreign Lens</h3>
-                    <p class="verdict-key">Understanding his biases and limits</p>
-                    <p>He stayed only a short time, did not speak the local languages fluently, and viewed events as a European Catholic. He called local datus "kings" and misunderstood some babaylan rituals.</p>
-                    <p class="talking-point"><strong>Presentation point:</strong> We cannot treat everything he wrote as absolute fact.</p>
-                </article>
-                <article class="verdict-card verdict-modern reveal">
-                    <p class="verdict-tag">The Modern View</p>
-                    <h3>Reclaiming the Narrative</h3>
-                    <p class="verdict-key">Reading beyond the Spanish story</p>
-                    <p>Today, Filipino historians do not use Pigafetta to praise Spanish "discovery." They use his clues alongside ancient gold, pottery, and boat remains to show that the islands were organized, wealthy, and independent before his arrival.</p>
-                    <p class="talking-point"><strong>Presentation point:</strong> Our history did not begin in 1521.</p>
+            <div class="artifact-match reveal">
+                <div class="artifact-selector" role="tablist" aria-label="Select a cultural legacy">
+                    <button class="artifact-pedestal is-active" type="button" role="tab" data-artifact="table" aria-selected="true" aria-controls="artifact-ledger">
+                        <span class="pedestal-number">01</span><strong>The Warm Table</strong><span>Hospitality &amp; Feasting Traditions</span>
+                    </button>
+                    <button class="artifact-pedestal" type="button" role="tab" data-artifact="words" aria-selected="false" aria-controls="artifact-ledger">
+                        <span class="pedestal-number">02</span><strong>Living Words</strong><span>Vocabulary Preserved Across 500 Years</span>
+                    </button>
+                    <button class="artifact-pedestal" type="button" role="tab" data-artifact="ink" aria-selected="false" aria-controls="artifact-ledger">
+                        <span class="pedestal-number">03</span><strong>Pride in Ink</strong><span>Bodily Art &amp; Warrior Identity</span>
+                    </button>
+                </div>
+
+                <article class="artifact-ledger" id="artifact-ledger" role="tabpanel" aria-live="polite" tabindex="0">
+                    <div class="ledger-column">
+                        <p class="ledger-label">What Pigafetta Saw in 1521 <span>Eyewitness Record</span></p>
+                        <h3 id="artifact-name">The Warm Table</h3>
+                        <p id="artifact-archaeology">He described welcoming feasts hosted by Rajah Colambu and Rajah Humabon. Guests were served roasted meat, fish soup, rice cooked in leaves, and sweet palm wine (tuba) in shared porcelain bowls.</p>
+                        <span class="ledger-rule" aria-hidden="true"></span>
+                        <p class="ledger-note">A living tradition, recorded in ink</p>
+                    </div>
+                    <div class="ledger-column ledger-ink">
+                        <p class="ledger-label">The Living Legacy Today <span>Modern Identity</span></p>
+                        <p class="artifact-legacy" id="artifact-quote">Hospitality is still an important part of Filipino life. Sharing a meal, offering plenty of food, and serving drinks are ways we show guests trust and respect, just as people did five centuries ago.</p>
+                        <p class="ledger-note">Culture carried forward</p>
+                    </div>
+                    <p class="artifact-takeaway" id="artifact-significance"><strong>Legacy from 1521:</strong> Sharing food and welcoming guests have always been part of how Filipinos greet the world.</p>
                 </article>
             </div>
 
             <div class="verdict-banner reveal">
-                <p><strong>Key Takeaway:</strong> Pigafetta did not discover the Philippines. He documented an archipelago that was already thriving, trading, and governing itself long before his arrival.</p>
+                <p><strong>Key Takeaway:</strong> Pigafetta's journal is a mirror of living traditions, connecting precolonial identity to Filipino life today.</p>
+            </div>
+        </section>
+<!-- ================= ARTIFACT GAME ================= -->
+        <section class="section section-alt" id="artifact-lab" aria-labelledby="artifact-lab-title">
+            <div class="artifact-lab reveal">
+                <div class="artifact-lab-heading">
+                    <div>
+                        <p class="network-kicker">Interactive Evidence Room <span aria-hidden="true">•</span> Play to Learn</p>
+                        <h3 id="artifact-lab-title">Match the Items</h3>
+                        <p>Match each object to the role it played in the world Pigafetta encountered. Click an object, then click its matching description—or drag it across.</p>
+                    </div>
+                    <div class="artifact-score" aria-live="polite"><span>Score</span><strong id="artifact-score">0 / 6</strong><small id="artifact-attempts">0 attempts</small></div>
+                </div>
+
+                <div class="artifact-game-layout">
+                    <div class="artifact-bank" aria-label="Artifacts to match">
+                        <p class="game-column-label">The artifacts</p>
+                        <button class="artifact-token" type="button" draggable="true" data-artifact-match="gold"><img src="images/Gold (Ornaments and Dust).jpg" alt="" aria-hidden="true"><span>Gold</span></button>
+                        <button class="artifact-token" type="button" draggable="true" data-artifact-match="rice"><img src="images/Rice.jpg" alt="" aria-hidden="true"><span>Rice</span></button>
+                        <button class="artifact-token" type="button" draggable="true" data-artifact-match="spices"><img src="images/Spices and Aromatics.jpg" alt="" aria-hidden="true"><span>Spices</span></button>
+                        <button class="artifact-token" type="button" draggable="true" data-artifact-match="tuba"><img src="images/Palm Wine (Tuba).jpg" alt="" aria-hidden="true"><span>Tuba</span></button>
+                        <button class="artifact-token" type="button" draggable="true" data-artifact-match="balangay"><img src="images/Balangay Ships.jpg" alt="" aria-hidden="true"><span>Balangay</span></button>
+                        <button class="artifact-token" type="button" draggable="true" data-artifact-match="porcelain"><img src="images/Chinese Porcelain and Silk.jpg" alt="" aria-hidden="true"><span>Porcelain</span></button>
+                    </div>
+
+                    <div class="artifact-targets" aria-label="Artifact uses">
+                        <div class="game-column-heading"><p class="game-column-label">What was it for?</p><small>Choose a match for each item.</small></div>
+                        <button class="artifact-target" type="button" data-artifact-target="balangay"><span class="target-mark">A</span><span>Boats used to travel and move goods between islands.</span></button>
+                        <button class="artifact-target" type="button" data-artifact-target="porcelain"><span class="target-mark">B</span><span>Proof that the islands traded with China and other parts of Asia.</span></button>
+                        <button class="artifact-target" type="button" data-artifact-target="tuba"><span class="target-mark">C</span><span>A drink made from palm sap using local knowledge.</span></button>
+                        <button class="artifact-target" type="button" data-artifact-target="gold"><span class="target-mark">D</span><span>Jewelry, gifts, and valuable items used in trade.</span></button>
+                        <button class="artifact-target" type="button" data-artifact-target="rice"><span class="target-mark">E</span><span>Food grown by communities to feed families and visitors.</span></button>
+                        <button class="artifact-target" type="button" data-artifact-target="spices"><span class="target-mark">F</span><span>Goods carried along sea routes to nearby islands and regions.</span></button>
+                    </div>
+                </div>
+
+                <div class="artifact-game-footer"><p id="artifact-game-status" role="status">Choose an artifact to begin.</p><button class="btn-reset-game" id="reset-artifact-game" type="button">Reset game</button></div>
+                <div class="artifact-feedback" id="artifact-feedback" role="status" aria-live="polite" hidden>
+                    <div class="artifact-feedback-card">
+                        <span class="feedback-kicker">Artifact Game <i aria-hidden="true">•</i> Field Result</span>
+                        <div class="feedback-main">
+                            <div class="feedback-character"><span class="feedback-glow" aria-hidden="true"></span><img id="artifact-feedback-image" src="images/correct_answer_transparent.png" alt="" aria-hidden="true"></div>
+                            <div class="feedback-copy"><span class="feedback-badge" id="artifact-feedback-badge">MATCH FOUND</span><strong id="artifact-feedback-title">Correct match!</strong><span id="artifact-feedback-message">You found the right connection.</span><span class="feedback-rule" aria-hidden="true"></span><small>Keep exploring the evidence.</small></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="artifact-complete" id="artifact-complete" role="dialog" aria-modal="true" aria-labelledby="artifact-complete-title" hidden>
+                    <div class="artifact-complete-card">
+                        <p class="network-kicker">Archive unlocked</p>
+                        <h4 id="artifact-complete-title">YEHEY! YOU DID IT!</h4>
+                        <p>You matched every artifact correctly. You’re thinking like a historian: connecting objects to evidence, people, and place.</p>
+                        <div class="complete-actions"><button class="btn btn-primary" id="play-again-artifact" type="button">Play again</button><button class="btn-complete-close" id="close-artifact-complete" type="button">Keep exploring</button></div>
+                    </div>
+                </div>
             </div>
         </section>
 <!-- ================= SOURCES ================= -->
         <section class="section" id="sources">
             <div class="section-head">
-                <p class="eyebrow">10, Sources and Evidence</p>
-                <h2>Where the Evidence Comes From</h2>
-                <p class="section-lead">
-                    This project uses Pigafetta's account, museum and library collections, and academic research. Each entry names its source type so readers can see where the information comes from.
-                </p>
+                <p class="eyebrow">References &amp; Archival Evidence</p>
+                <h2>Sources</h2>
+                <p class="section-lead">Manuscripts, translations, and studies used in this project.</p>
             </div>
 
-            <div class="source-tabs" role="tablist" aria-label="Source categories">
-                <button class="source-tab is-active" type="button" role="tab" data-tab="primary" aria-selected="true">Primary</button>
-                <button class="source-tab" type="button" role="tab" data-tab="institutional" aria-selected="false">Museums and Archives</button>
-                <button class="source-tab" type="button" role="tab" data-tab="academic" aria-selected="false">Research</button>
+            <div class="source-groups">
+                <section class="source-group reveal">
+                    <h3>Primary Accounts &amp; Translations</h3>
+                    <ul class="source-list">
+                        <li><strong>Antonio Pigafetta.</strong> <em>The First Voyage Around the World</em>. Translated by James Alexander Robertson (1906). <span class="source-meta">Definitive English translation of the Ambrosiana manuscript.</span></li>
+                        <li><strong>Antonio Pigafetta.</strong> <em>Relazione del primo viaggio intorno al mondo</em>. French and Italian manuscript editions, Yale University Press, R. A. Skelton edition (1969).</li>
+                    </ul>
+                </section>
+
+                <section class="source-group reveal">
+                    <h3>Archival Manuscripts &amp; Repositories</h3>
+                    <ul class="source-list">
+                        <li><strong>Beinecke Rare Book and Manuscript Library, Yale University.</strong> <span class="source-meta">Beinecke MS 3510, French manuscript edition.</span></li>
+                        <li><strong>Biblioteca Ambrosiana, Milan.</strong> <span class="source-meta">Italian codex L. 103 sup.</span></li>
+                        <li><strong>Bibliothèque nationale de France, Paris.</strong> <span class="source-meta">Manuscripts Français 5650 and 2645.</span></li>
+                    </ul>
+                </section>
+
+                <section class="source-group reveal">
+                    <h3>Historical &amp; Archaeological Studies</h3>
+                    <ul class="source-list">
+                        <li><strong>William Henry Scott.</strong> <em>Barangay: Sixteenth-Century Philippine Culture and Society</em>. Ateneo de Manila University Press (1994).</li>
+                        <li><strong>F. Landa Jocano.</strong> <em>Philippine Prehistory: An Anthropological Overview of the Beginnings of Filipino Society and Culture</em> (1975).</li>
+                        <li><strong>National Museum of the Philippines.</strong> <span class="source-meta">Archaeological records on the Butuan Balangay and precolonial gold artifacts.</span></li>
+                    </ul>
+                </section>
             </div>
 
-            <div class="source-panel" id="source-panel-primary" role="tabpanel">
-                <p class="source-intro">Pigafetta's own account, in surviving manuscripts and reputable translations.</p>
-                <ul class="source-list reveal">
-                    <li><strong>Antonio Pigafetta</strong>, <em>The First Voyage Around the World</em>, translated by J.&nbsp;A. Robertson (1906), along with Yale University Press and modern scholarly editions. <span class="source-type">Primary translation, c. 1524 manuscript and 1906 translation</span></li>
-                    <li><strong>Pigafetta manuscript</strong>, Beinecke Rare Book and Manuscript Library, Yale University (MS&nbsp;3510). <span class="source-type">Primary manuscript</span></li>
-                    <li><strong>Pigafetta manuscripts</strong>, Biblioteca Ambrosiana in Milan and other European archives. <span class="source-type">Primary manuscripts</span></li>
-                </ul>
-            </div>
-
-            <div class="source-panel" id="source-panel-institutional" role="tabpanel" hidden>
-                <p class="source-intro">Museums, libraries, and cultural groups that preserve or explain related evidence.</p>
-                <ul class="source-list reveal">
-                    <li><strong>Library of Congress</strong>, early maps and documents from the first circumnavigation. <span class="source-type">Library archive</span></li>
-                    <li><strong>National Museum of the Philippines</strong>, collections and research on Philippine archaeology and history. <span class="source-type">Museum collection</span></li>
-                    <li><strong>National Historical Commission of the Philippines</strong>, national historical documentation and publications. <span class="source-type">Government cultural institution</span></li>
-                    <li><strong>University libraries and presses</strong>, careful editions and digital copies of Pigafetta's manuscripts. <span class="source-type">University collections</span></li>
-                </ul>
-            </div>
-
-            <div class="source-panel" id="source-panel-academic" role="tabpanel" hidden>
-                <p class="source-intro">Academic books and research used to explain the historical evidence.</p>
-                <ul class="source-list reveal">
-                    <li>Careful editions and studies of <em>Pigafetta's account</em>, along with histories of Southeast Asia and the Philippines. <span class="source-type">Books and journal articles</span></li>
-                    <li>University-press books about the Magellan-Elcano expedition and early Philippine societies. <span class="source-type">Research book</span></li>
-                    <li>Research on early Philippine languages, archaeology, and objects from daily life. <span class="source-type">Research articles</span></li>
-                </ul>
-            </div>
-
-            <div class="footnote-section reveal">
-                <h3>Footnotes and Citations</h3>
-                <ol class="footnote-list">
-                    <li id="fn-andrews">Source for Pigafetta's life and his role as a recorder of the voyage. See the original sources above.</li>
-                    <li id="fn-skelton">Source for the manuscript history and translation of the account. See the original sources above.</li>
-                </ol>
-                <p class="note">
-                    The small footnote numbers and "Read more" notes point to these sources. When a statement is an interpretation rather than Pigafetta's own words, the exhibit says so.
-                </p>
-            </div>
         </section>
 
     </main>
@@ -481,16 +629,16 @@
         <div class="footer-inner">
             <div class="footer-title">Pigafetta's Philippines</div>
             <p class="footer-note">
-                A history exhibit for a college class. It separates what Antonio Pigafetta recorded from later explanations and from the assumptions he brought as a 16th-century European observer.
+                A digital history exhibit developed for Philippine History. It examines Antonio Pigafetta's 1521 chronicle by distinguishing firsthand observations from foreign assumptions and later colonial interpretations.
             </p>
             <nav class="footer-nav" aria-label="Footer navigation">
-                <a href="#introduction">Introduction</a>
-                <a href="#customs">Customs</a>
-                <a href="#vocabulary">Language</a>
+                <a href="#introduction">Intro</a>
+                <a href="#customs">Life</a>
+                <a href="#vocabulary">Words</a>
                 <a href="#trade">Trade</a>
                 <a href="#sources">Sources</a>
             </nav>
-            <p class="footer-meta">1519 to 1522, Magellan-Elcano Expedition, Class Exhibit</p>
+            <p class="footer-credits">Created by Capagngan, Gatchalian, and Tumaliwan | BSIT242<br>Philippine History Subject (1519 to 1522, Magellan-Elcano Expedition)</p>
         </div>
     </footer>
 

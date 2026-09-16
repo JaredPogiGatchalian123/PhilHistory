@@ -6,6 +6,10 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", () => {
+    const artifactLab = document.getElementById("artifact-lab");
+    const conclusion = document.getElementById("significance");
+    if (artifactLab && conclusion) conclusion.before(artifactLab);
+
     initMobileMenu();
     initActiveNav();
     initReveal();
@@ -13,9 +17,288 @@ document.addEventListener("DOMContentLoaded", () => {
     initVocabulary();
     initSourceTabs();
     initFieldNotesExplorer();
+    initMaritimeTradeExplorer();
+    initArtifactMatchGame();
+    initArtifactMatcher();
     initModal();
+    initPigafettaWave();
+    initVoyageAnimation();
 });
 
+/* =========================================================
+   HERO MAP: EXPEDITION VOYAGE ANIMATION
+   ========================================================= */
+function initVoyageAnimation() {
+    const map = document.querySelector(".voyage-animation");
+    if (!map) return;
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const syncMotionPreference = () => {
+        if (reducedMotion.matches) {
+            if (typeof map.pauseAnimations === "function") map.pauseAnimations();
+        } else {
+            if (typeof map.unpauseAnimations === "function") map.unpauseAnimations();
+        }
+    };
+
+    reducedMotion.addEventListener?.("change", syncMotionPreference);
+    syncMotionPreference();
+}
+
+/* =========================================================
+   ARTIFACT LAB: MATCH THE ARTIFACT
+   ========================================================= */
+function initArtifactMatchGame() {
+    const game = document.getElementById("artifact-lab");
+    if (!game) return;
+
+    const tokens = Array.from(game.querySelectorAll(".artifact-token"));
+    const targets = Array.from(game.querySelectorAll(".artifact-target"));
+    const score = game.querySelector("#artifact-score");
+    const attemptsLabel = game.querySelector("#artifact-attempts");
+    const status = game.querySelector("#artifact-game-status");
+    const reset = game.querySelector("#reset-artifact-game");
+    const complete = game.querySelector("#artifact-complete");
+    const closeComplete = game.querySelector("#close-artifact-complete");
+    const playAgain = game.querySelector("#play-again-artifact");
+    const feedback = game.querySelector("#artifact-feedback");
+    const feedbackImage = game.querySelector("#artifact-feedback-image");
+    const feedbackTitle = game.querySelector("#artifact-feedback-title");
+    const feedbackMessage = game.querySelector("#artifact-feedback-message");
+    const feedbackBadge = game.querySelector("#artifact-feedback-badge");
+    let selected = null;
+    let matched = 0;
+    let attempts = 0;
+    let audioContext;
+    let feedbackTimer;
+    let completionTimer;
+
+    const playTone = (correct) => {
+        try {
+            audioContext ||= new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            oscillator.type = "sine";
+            oscillator.frequency.value = correct ? 660 : 180;
+            gain.gain.setValueAtTime(0.0001, audioContext.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.08, audioContext.currentTime + 0.01);
+            gain.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + (correct ? 0.22 : 0.14));
+            oscillator.connect(gain).connect(audioContext.destination);
+            oscillator.start();
+            oscillator.stop(audioContext.currentTime + (correct ? 0.24 : 0.16));
+        } catch (error) { /* Sound is optional; the game still works silently. */ }
+    };
+
+    const updateScore = () => {
+        score.textContent = `${matched} / ${tokens.length}`;
+        attemptsLabel.textContent = `${attempts} attempt${attempts === 1 ? "" : "s"}`;
+    };
+
+    const playFanfare = () => {
+        try {
+            audioContext ||= new (window.AudioContext || window.webkitAudioContext)();
+            [523.25, 659.25, 783.99, 1046.5].forEach((frequency, index) => {
+                const start = audioContext.currentTime + index * 0.11;
+                const oscillator = audioContext.createOscillator();
+                const gain = audioContext.createGain();
+                oscillator.type = "sine";
+                oscillator.frequency.value = frequency;
+                gain.gain.setValueAtTime(0.0001, start);
+                gain.gain.exponentialRampToValueAtTime(0.1, start + 0.02);
+                gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.28);
+                oscillator.connect(gain).connect(audioContext.destination);
+                oscillator.start(start);
+                oscillator.stop(start + 0.3);
+            });
+        } catch (error) { /* Sound is optional; the game still works silently. */ }
+    };
+
+    const closeCompleteDialog = () => {
+        complete.hidden = true;
+    };
+
+    const flashFeedback = (correct) => {
+        window.clearTimeout(feedbackTimer);
+        feedback.classList.remove("is-correct", "is-incorrect");
+        feedbackImage.src = correct ? "images/correct_answer_transparent.png" : "images/incorrect_answer_cutout.png";
+        feedbackBadge.textContent = correct ? "CORRECT ANSWER" : "INCORRECT ANSWER";
+        feedbackTitle.textContent = correct ? "Your answer is correct!" : "Your answer is incorrect.";
+        feedbackMessage.textContent = correct ? "Great job! You found the right connection." : "Try another description.";
+        feedback.classList.add(correct ? "is-correct" : "is-incorrect");
+        feedback.hidden = false;
+        feedbackTimer = window.setTimeout(() => { feedback.hidden = true; }, correct ? 1500 : 1300);
+    };
+
+    const clearSelection = () => {
+        tokens.forEach((token) => token.classList.remove("is-selected"));
+        selected = null;
+    };
+
+    const tryMatch = (token, target) => {
+        if (!token || !target || token.disabled || target.disabled) return;
+        attempts += 1;
+        const correct = token.dataset.artifactMatch === target.dataset.artifactTarget;
+        target.classList.remove("is-correct", "is-wrong");
+        void target.offsetWidth;
+        target.classList.add(correct ? "is-correct" : "is-wrong");
+        playTone(correct);
+        flashFeedback(correct);
+
+        if (correct) {
+            matched += 1;
+            token.disabled = true;
+            target.disabled = true;
+            token.classList.add("is-matched");
+            target.querySelector(".target-mark").textContent = "✓";
+            status.textContent = matched === tokens.length
+                ? `Excellent! You matched all ${tokens.length} artifacts in ${attempts} attempts.`
+                : `Correct! ${matched} of ${tokens.length} artifacts matched.`;
+            if (matched === tokens.length) {
+                playFanfare();
+                window.clearTimeout(completionTimer);
+                completionTimer = window.setTimeout(() => {
+                    feedback.hidden = true;
+                    complete.hidden = false;
+                    closeComplete.focus();
+                }, 850);
+            }
+        } else {
+            status.textContent = "Not quite — look at what the object reveals about local life and regional connections.";
+        }
+        updateScore();
+        clearSelection();
+    };
+
+    tokens.forEach((token) => {
+        token.addEventListener("click", () => {
+            if (token.disabled) return;
+            clearSelection();
+            selected = token;
+            token.classList.add("is-selected");
+            status.textContent = `${token.querySelector("span").textContent} selected. Choose its matching description.`;
+        });
+        token.addEventListener("dragstart", (event) => {
+            selected = token;
+            event.dataTransfer.setData("text/plain", token.dataset.artifactMatch);
+            token.classList.add("is-selected");
+        });
+        token.addEventListener("dragend", clearSelection);
+    });
+
+    targets.forEach((target) => {
+        target.addEventListener("click", () => tryMatch(selected, target));
+        target.addEventListener("dragover", (event) => { event.preventDefault(); target.classList.add("is-over"); });
+        target.addEventListener("dragleave", () => target.classList.remove("is-over"));
+        target.addEventListener("drop", (event) => {
+            event.preventDefault();
+            target.classList.remove("is-over");
+            const match = tokens.find((token) => token.dataset.artifactMatch === event.dataTransfer.getData("text/plain"));
+            tryMatch(match, target);
+        });
+    });
+
+    reset.addEventListener("click", () => {
+        window.clearTimeout(completionTimer);
+        window.clearTimeout(feedbackTimer);
+        closeCompleteDialog();
+        feedback.hidden = true;
+        matched = 0;
+        attempts = 0;
+        tokens.forEach((token) => { token.disabled = false; token.classList.remove("is-selected", "is-matched"); });
+        targets.forEach((target) => {
+            target.disabled = false;
+            target.classList.remove("is-correct", "is-wrong", "is-over");
+            target.querySelector(".target-mark").textContent = target.dataset.artifactTarget === "balangay" ? "A" : target.dataset.artifactTarget === "porcelain" ? "B" : target.dataset.artifactTarget === "tuba" ? "C" : target.dataset.artifactTarget === "gold" ? "D" : target.dataset.artifactTarget === "rice" ? "E" : "F";
+        });
+        clearSelection();
+        status.textContent = "Game reset. Choose an artifact to begin.";
+        updateScore();
+    });
+    closeComplete.addEventListener("click", closeCompleteDialog);
+    playAgain.addEventListener("click", () => {
+        closeCompleteDialog();
+        reset.click();
+        tokens[0].focus();
+    });
+    complete.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeCompleteDialog();
+    });
+    updateScore();
+}
+
+
+/* =========================================================
+   1521 TIME CAPSULE: ARCHAEOLOGY VS. INK MATCHER
+   ========================================================= */
+const artifactMatches = [
+    {
+        id: "table",
+        name: "The Warm Table",
+        observation: "He described welcoming feasts hosted by Rajah Colambu and Rajah Humabon. Guests were served roasted meat, fish soup, rice cooked in leaves, and sweet palm wine (tuba) in shared porcelain bowls.",
+        legacy: "Hospitality is still an important part of Filipino life. Sharing a meal, offering plenty of food, and serving drinks are ways we show guests trust and respect, just as people did five centuries ago.",
+        significance: "Sharing food and welcoming guests have always been part of how Filipinos greet the world."
+    },
+    {
+        id: "words",
+        name: "Living Words",
+        observation: "Pigafetta wrote down Visayan words spoken by local people, including 'humay' (rice), 'balanghai' (boat), 'iloy' (mother), and 'asawa' (spouse). His list became the first European record of many Visayan terms.",
+        legacy: "Spanish and American rule did not erase our native languages. Many of the words recorded in Pigafetta's journal are still used every day by Visayans and other Filipinos.",
+        significance: "His notebook shows that indigenous Philippine languages were rich, organized, and strong enough to survive."
+    },
+    {
+        id: "ink",
+        name: "Pride in Ink",
+        observation: "He called Visayan leaders and warriors 'Pintados,' meaning people with tattoos. He described their detailed, full-body designs as signs of courage, skill in battle, and high standing in the community.",
+        legacy: "Colonial authorities once called these tattoo traditions (batok) 'primitive.' Today, many Filipinos are proudly bringing them back as a way to honor their culture and ancestors.",
+        significance: "The tattoos once condemned by colonizers are now worn with pride as symbols of Filipino identity."
+    }
+];
+
+function initArtifactMatcher() {
+    const section = document.getElementById("significance");
+    if (!section) return;
+
+    const buttons = Array.from(section.querySelectorAll(".artifact-pedestal"));
+    const ledger = section.querySelector(".artifact-ledger");
+    const name = section.querySelector("#artifact-name");
+    const observation = section.querySelector("#artifact-archaeology");
+    const legacy = section.querySelector("#artifact-quote");
+    const significance = section.querySelector("#artifact-significance");
+    if (!ledger || !name || !observation || !legacy || !significance) return;
+
+    const setArtifact = (artifactId) => {
+        const artifact = artifactMatches.find((item) => item.id === artifactId);
+        if (!artifact) return;
+
+        buttons.forEach((button) => {
+            const active = button.dataset.artifact === artifactId;
+            button.classList.toggle("is-active", active);
+            button.setAttribute("aria-selected", String(active));
+        });
+
+        ledger.classList.remove("is-changing");
+        requestAnimationFrame(() => {
+            name.textContent = artifact.name;
+            observation.textContent = artifact.observation;
+            legacy.textContent = artifact.legacy;
+            significance.innerHTML = `<strong>Legacy from 1521:</strong> ${artifact.significance}`;
+            ledger.classList.add("is-changing");
+            requestAnimationFrame(() => ledger.classList.remove("is-changing"));
+        });
+    };
+
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => setArtifact(button.dataset.artifact));
+        button.addEventListener("keydown", (event) => {
+            if (event.key !== "Enter" && event.key !== " ") return;
+            event.preventDefault();
+            setArtifact(button.dataset.artifact);
+        });
+    });
+
+    setArtifact("table");
+}
 /* =========================================================
    MOBILE MENU
    ========================================================= */
@@ -26,8 +309,15 @@ function initMobileMenu() {
 
     const setOpen = (open) => {
         button.setAttribute("aria-expanded", String(open));
+        menu.setAttribute("aria-hidden", String(!open));
         menu.classList.toggle("is-open", open);
         document.body.classList.toggle("menu-open", open);
+        if (open) {
+            const firstLink = menu.querySelector("a");
+            if (firstLink) firstLink.focus();
+        } else {
+            button.focus();
+        }
     };
 
     button.addEventListener("click", () => {
@@ -108,6 +398,91 @@ function initBackToTop() {
         window.scrollTo({ top: 0, behavior: "smooth" });
     });
 }
+
+/* =========================================================
+   MARITIME TRADE ROUTE EXPLORER
+   ========================================================= */
+const maritimeRoutes = {
+    china: {
+        direction: "Northward Route",
+        name: "Trade with Imperial China",
+        tags: ["Blue & White Porcelain", "Raw Gold", "Silk", "Beeswax"],
+        inbound: "Fine blue-and-white porcelain plates, silk garments, iron needles, and cooking pots.",
+        outbound: "Native gold bullion, pure beeswax, pearls, and yellow tortoise shells.",
+        significance: "Centuries before Magellan, early Filipinos had regular, peaceful business contracts with Chinese merchant fleets."
+    },
+    malay: {
+        direction: "Westward Route",
+        name: "The Malay & Borneo Network",
+        tags: ["Malay Language", "Woven Textiles", "Brass Gongs", "Regional News"],
+        inbound: "The Malay trading language, fine woven textiles, brass gongs, and regional news.",
+        outbound: "Local provisions, timber, and inter-island sea transport on native balangays.",
+        significance: "This regional connection is why Magellan's Malay slave Enrique could talk with local Visayan leaders on day one."
+    },
+    spice: {
+        direction: "Southward Route",
+        name: "The Spice Route to the Moluccas",
+        tags: ["Cloves", "Nutmeg", "Mace", "Aromatic Woods"],
+        inbound: "High-value cloves, nutmeg, mace, and aromatic woods.",
+        outbound: "Rice provisions, salted fish, and local iron tools to supply spice trade expeditions.",
+        significance: "The Philippines was the northern gateway to the exact Spice Islands that European empires risked everything to reach."
+    }
+};
+
+function initMaritimeTradeExplorer() {
+    const explorer = document.getElementById("maritime-explorer");
+    if (!explorer) return;
+
+    const inspector = explorer.querySelector(".route-inspector");
+    const direction = explorer.querySelector("#route-direction");
+    const name = explorer.querySelector("#route-name");
+    const tags = explorer.querySelector("#commodity-tags");
+    const inbound = explorer.querySelector("#route-inbound");
+    const outbound = explorer.querySelector("#route-outbound");
+    const significance = explorer.querySelector("#route-significance");
+    const controls = Array.from(explorer.querySelectorAll(".trade-route, .chart-node"));
+    const switchButtons = Array.from(explorer.querySelectorAll(".route-switch-button"));
+
+    const setRoute = (routeKey) => {
+        const route = maritimeRoutes[routeKey];
+        if (!route) return;
+
+        direction.textContent = route.direction;
+        name.textContent = route.name;
+        inbound.textContent = route.inbound;
+        outbound.textContent = route.outbound;
+        significance.textContent = route.significance;
+        tags.innerHTML = route.tags.map((tag) => `<span class="commodity-tag">${tag}</span>`).join("");
+
+        controls.forEach((control) => {
+            control.classList.toggle("is-active", control.dataset.route === routeKey);
+        });
+        switchButtons.forEach((button) => {
+            const active = button.dataset.route === routeKey;
+            button.classList.toggle("is-active", active);
+            button.setAttribute("aria-pressed", String(active));
+        });
+
+        inspector.classList.remove("is-changing");
+        requestAnimationFrame(() => inspector.classList.add("is-changing"));
+    };
+
+    controls.forEach((control) => {
+        control.addEventListener("click", () => setRoute(control.dataset.route));
+        control.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                setRoute(control.dataset.route);
+            }
+        });
+    });
+    switchButtons.forEach((button) => {
+        button.addEventListener("click", () => setRoute(button.dataset.route));
+    });
+
+    setRoute("china");
+}
+
 /* =========================================================
    VOCABULARY DATA & RENDERING
    =========================================================
@@ -303,7 +678,8 @@ function initFieldNotesExplorer() {
             topicButtons.forEach((item) => {
                 const active = item === button;
                 item.classList.toggle("is-active", active);
-                item.setAttribute("aria-pressed", String(active));
+                item.setAttribute("aria-selected", String(active));
+                item.setAttribute("tabindex", active ? "0" : "-1");
             });
             render();
         });
@@ -384,5 +760,45 @@ function initModal() {
     });
     modal.addEventListener("keydown", (e) => {
         if (e.key === "Escape") close();
+    });
+}
+
+/* =========================================================
+   PIGAFETTA WAVING EASTER EGG
+   ========================================================= */
+function initPigafettaWave() {
+    const button = document.getElementById("pigafetta-voice-btn");
+    const image = document.querySelector(".portrait-image-wrap img");
+    const video = document.querySelector(".portrait-image-wrap video");
+    if (!button || !image || !video) return;
+
+    const resetPortrait = () => {
+        video.classList.add("hidden");
+        image.classList.remove("hidden");
+        button.disabled = false;
+    };
+
+    button.addEventListener("click", () => {
+        button.disabled = true;
+        image.classList.add("hidden");
+        video.classList.remove("hidden");
+        video.currentTime = 0;
+        video.muted = false;
+        video.volume = 1.0;
+        const playRequest = video.play();
+
+        if (playRequest) {
+            playRequest.catch(() => {
+                resetPortrait();
+            });
+        }
+    });
+
+    video.addEventListener("ended", () => {
+        window.setTimeout(() => {
+            video.classList.add("hidden");
+            image.classList.remove("hidden");
+            button.disabled = false;
+        }, 1000);
     });
 }

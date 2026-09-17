@@ -491,7 +491,7 @@ function initMaritimeTradeExplorer() {
    and uncertain for some entries, so wording is cautious.
    ========================================================= */
 const vocabulary = [
-    { category: "numbers", word: "isa", meaning: "one", context: "A number Pigafetta wrote down.", note: "The spelling shows how he heard and recorded the word." },
+    { category: "numbers", word: "usa", meaning: "one", context: "A number Pigafetta wrote down.", note: "The spelling shows how he heard and recorded the word." },
     { category: "numbers", word: "dua", meaning: "two", context: "Part of Pigafetta's list of numbers.", note: "His spelling was shaped by his Italian pronunciation." },
     { category: "numbers", word: "tolu", meaning: "three", context: "A number in the list he recorded.", note: "The exact modern match is still discussed by researchers." },
     { category: "numbers", word: "upat", meaning: "four", context: "Part of the early number list.", note: "It gives us a small glimpse of the language he heard." },
@@ -500,7 +500,7 @@ const vocabulary = [
     { category: "food", word: "kanin", meaning: "cooked rice / food", context: "Food offered to the crew.", note: "It points to rice as an important food and word." },
     { category: "food", word: "tuba", meaning: "palm wine from fermented sap", context: "A drink made from coconut or palm sap.", note: "It shows how palm trees supported everyday coastal life." },
     { category: "objects", word: "balanghai", meaning: "large seagoing boat", context: "A boat used for travel between islands.", note: "It points to strong boatbuilding and travel skills." },
-    { category: "social", word: "dato", meaning: "chief / leader", context: "A word for a local leader.", note: "Pigafetta described these leaders with European titles too." },
+    { category: "social", word: "datu", meaning: "chief / leader", context: "A word for a local leader.", note: "Pigafetta described these leaders with European titles too." },
     { category: "social", word: "barangay", meaning: "community / social group", context: "A word connected with local community life.", note: "It is an early European record of a long-used Philippine word." }
 ];
 
